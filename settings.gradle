@@ -1,4 +1,4 @@
-rootProject.name = 'helianthus-annuus-common-java'
+rootProject.name = 'helianthus-annuus-common-lang'
 include 'helianthus-annuus-apollo-client'
 include 'helianthus-annuus-openapi'
 include 'helianthus-annuus-logging'
