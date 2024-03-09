@@ -1,0 +1,5 @@
+rootProject.name = 'helianthus-annuus-common-java'
+include 'helianthus-annuus-apollo-client'
+include 'helianthus-annuus-openapi'
+include 'helianthus-annuus-logging'
+

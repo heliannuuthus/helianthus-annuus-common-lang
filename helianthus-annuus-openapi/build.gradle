@@ -1,0 +1,4 @@
+dependencies {
+    api "org.springdoc:springdoc-openapi-starter-webflux-api:${openapiVersion}"
+    api project(":helianthus-annuus-logging")
+}

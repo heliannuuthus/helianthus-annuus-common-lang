@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: apollo-client
+server:
+  port: 11111

@@ -1,0 +1,48 @@
+plugins {
+    id "java-library"
+    id "org.springframework.boot" version "3.2.3"
+    id "io.spring.dependency-management" version "1.1.4"
+    id "org.springdoc.openapi-gradle-plugin" version "1.8.0"
+    id "io.freefair.lombok" version "8.6"
+}
+
+
+ext {
+    openapiVersion = "2.3.0"
+    apolloClientVersion = "2.2.0"
+}
+
+allprojects {
+
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/spring/" }
+        mavenCentral()
+    }
+
+}
+
+subprojects {
+    apply plugin: "java-library"
+    apply plugin: "org.springframework.boot"
+    apply plugin: "io.spring.dependency-management"
+    apply plugin: "io.freefair.lombok"
+
+
+    jar {
+        enabled = true
+    }
+
+    configurations {
+        all*.exclude module: "spring-boot-starter-logging"
+    }
+}
+
+dependencies {
+    testImplementation platform("org.junit:junit-bom:5.9.1")
+    testImplementation "org.junit.jupiter:junit-jupiter"
+}
+
+test {
+    useJUnitPlatform()
+}
