@@ -1,5 +1,9 @@
 spring:
   application:
-    name: apollo-client
+    name: helianthus-annuus-devtools
 server:
   port: 11111
+
+apollo:
+  bootstrap:
+    namespaces: application

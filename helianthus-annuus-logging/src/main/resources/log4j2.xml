@@ -7,13 +7,13 @@
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout
-                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{1} - %msg%n"/>
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} [%t] %highlight{%c{1.}.%M}: %msg%n"/>
         </Console>
         <RollingFile name="fileLogger"
                      fileName="${basePath}/app.log"
                      filePattern="${basePath}/app-%d{yyyy-MM-dd}.log">
             <PatternLayout>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{1} - %msg%n
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} [%t] %highlight{%c{1.}.%M(%L)}: %msg%n
                 </pattern>
             </PatternLayout>
             <Policies>
@@ -33,7 +33,7 @@
                      fileName="${basePath}/error.log"
                      filePattern="${basePath}/error-%d{yyyy-MM-dd}.log">
             <PatternLayout>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{1} - %msg%n
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} [%t] %highlight{%c{1.}.%M(%L)}: %msg%n
                 </pattern>
             </PatternLayout>
             <Policies>
