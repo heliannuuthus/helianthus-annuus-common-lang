@@ -1,0 +1,22 @@
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+
+jobs:
+  lint:
+    uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-lint.yml
+
+  build:
+    needs: lint
+    uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-build.yml
+
+  publish:
+    needs: build
+    permissions:
+      contents: read
+      packages: write
+    uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-publish.yml
+    with:
+      user: ${{ github.actor }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
