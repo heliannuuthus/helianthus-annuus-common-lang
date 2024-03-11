@@ -1,9 +1,13 @@
 on:
   pull_request:
-    types: [ opened, reopened, synchronize ]
+    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - master
 
 jobs:
   lint:
+    if: github.event.pull_request.merged == false
     uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-lint.yml@master
 
   build:
@@ -11,6 +15,7 @@ jobs:
     uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-build.yml@master
 
   publish:
+    if: github.event.pull_request.merged == true
     needs: build
     permissions:
       contents: read
