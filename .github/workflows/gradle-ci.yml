@@ -4,18 +4,18 @@ on:
 
 jobs:
   lint:
-    uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-lint.yml
+    uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-lint.yml@master
 
   build:
     needs: lint
-    uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-build.yml
+    uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-build.yml@master
 
   publish:
     needs: build
     permissions:
       contents: read
       packages: write
-    uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-publish.yml
+    uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-publish.yml@master
     with:
       user: ${{ github.actor }}
     secrets:
