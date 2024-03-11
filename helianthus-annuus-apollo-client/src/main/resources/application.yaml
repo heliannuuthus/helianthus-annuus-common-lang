@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: helianthus-annuus-devtools
-server:
-  port: 11111
-
-apollo:
-  bootstrap:
-    namespaces: application

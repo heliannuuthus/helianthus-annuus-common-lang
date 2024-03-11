@@ -4,7 +4,11 @@ plugins {
     id "io.spring.dependency-management" version "1.1.4"
     id "org.springdoc.openapi-gradle-plugin" version "1.8.0"
     id "io.freefair.lombok" version "8.6"
+    id 'me.qoomon.git-versioning' version '6.4.2'
+    id "com.diffplug.spotless" version "6.25.0"
 }
+
+apply from: "https://cdn.jsdelivr.net/gh/heliannuuthus/integration-deploy/gradle/multi-library.gradle"
 
 
 ext {
@@ -12,8 +16,8 @@ ext {
     apolloClientVersion = "2.2.0"
 }
 
-allprojects {
 
+allprojects {
     repositories {
         maven { url "https://maven.aliyun.com/repository/public" }
         maven { url "https://maven.aliyun.com/repository/spring/" }
@@ -22,27 +26,16 @@ allprojects {
 
 }
 
-subprojects {
-    apply plugin: "java-library"
+allprojects {
     apply plugin: "org.springframework.boot"
     apply plugin: "io.spring.dependency-management"
-    apply plugin: "io.freefair.lombok"
 
+
+    bootJar {
+        enabled = false
+    }
 
     jar {
         enabled = true
     }
-
-    configurations {
-        all*.exclude module: "spring-boot-starter-logging"
-    }
-}
-
-dependencies {
-    testImplementation platform("org.junit:junit-bom:5.9.1")
-    testImplementation "org.junit.jupiter:junit-jupiter"
-}
-
-test {
-    useJUnitPlatform()
 }
