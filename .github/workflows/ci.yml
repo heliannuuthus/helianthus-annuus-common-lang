@@ -7,6 +7,20 @@ on:
     types: [ closed ]
 
 jobs:
+  print:
+    name: Input check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking your input
+        run: |
+          echo "github.event.pull_request.merged           : $MERGED_RAW"
+          echo "github.event.pull_request.merged == 'true' : $MERGED_TRUE_STR"
+          echo "github.event.pull_request.merged  == true  : $MERGED_TRUE_BOOL"
+        env:
+          MERGED_RAW: ${{ github.event.pull_request.merged }}
+          MERGED_TRUE_STR: ${{ github.event.pull_request.merged == 'true' }}
+          MERGED_TRUE_BOOL: ${{ github.event.pull_request.merged == true }}
+            
   lint:
     if: ${{ github.event.pull_request.merged != true }}
     uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-lint.yml@master
