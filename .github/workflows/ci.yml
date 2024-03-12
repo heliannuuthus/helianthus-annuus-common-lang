@@ -1,9 +1,10 @@
+name: gradle
+
 on:
   pull_request:
     types: [ opened, reopened, synchronize ]
-  push:
-    branches:
-      - master
+  pull_request_target:
+    types: [ closed ]
 
 jobs:
   print:
@@ -21,15 +22,16 @@ jobs:
           MERGED_TRUE_BOOL: ${{ github.event.pull_request.merged == true }}
             
   lint:
-    if: github.event.pull_request.merged != true
+    if: ${{ github.event.pull_request.merged != true }}
     uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-lint.yml@master
 
   build:
+    if: always()
     needs: lint
     uses: heliannuuthus/integration-deploy/.github/workflows/call-gradle-build.yml@master
 
   publish:
-    if: github.event.pull_request.merged == true
+    if: ${{ always() && github.event.pull_request.merged == true }}
     needs: build
     permissions:
       contents: read
