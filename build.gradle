@@ -8,7 +8,7 @@ plugins {
     id "com.diffplug.spotless" version "6.25.0"
 }
 
-apply from: "https://cdn.jsdelivr.net/gh/heliannuuthus/integration-deploy/gradle/multi-library.gradle"
+apply from: "https://cdn.jsdelivr.net/gh/heliannuuthus/integrate-deploy/gradle/multi-library.gradle"
 
 
 ext {
