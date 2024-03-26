@@ -4,7 +4,9 @@ import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import java.time.Duration;
 import lombok.extern.slf4j.Slf4j;
+import org.springdoc.core.utils.SpringDocUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,10 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 public class OpenapiConfiguration {
+
+  static {
+    SpringDocUtils.getConfig().replaceWithClass(Duration.class, String.class);
+  }
 
   @Value("${spring.application.name}")
   private String application;
@@ -38,7 +44,7 @@ public class OpenapiConfiguration {
 
   @Bean
   public OpenAPI springShopOpenAPI() {
-    log.info("openapi: http://{}:{}/redoc.html", serverAddress, port);
+    log.info("openapi url: http://{}:{}/redoc.html", serverAddress, port);
     return new OpenAPI().info(info()).externalDocs(externalDocumentation());
   }
 }

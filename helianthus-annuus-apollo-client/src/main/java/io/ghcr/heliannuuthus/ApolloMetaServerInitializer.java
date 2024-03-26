@@ -16,11 +16,9 @@ public class ApolloMetaServerInitializer
   public static final int ORDER = -1;
   private static final String SCHEMA = "config";
   private static final String SPRING_APPLICATION_NAME_KEY = "spring.application.name";
-  private static final String SPRING_PROFILES_ACTIVE_KEY = "spring.profiles.active";
-  private static final String DEFAULT_META_SERVER = "http://{0}.heliannuuthus.com";
+  private static final String DEFAULT_META_SERVER = "http://{0}.heliannuuthus.org";
   private static final String DEFAULT_ENV = "dev";
   private static final String PROD_ENV = "prod";
-
   private static final String MIDDLE_LINE = "-";
 
   @Override
